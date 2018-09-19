@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './BuildControl.css';
 
-const buildControl = (props) => (
-    <div>
-        <div className={classes.Label}>{props.label}</div>
-        <button 
-            className={classes.More} 
-            onClick={props.add}>More</button>
-        <button 
-            className={classes.Less} 
-            onClick={props.rmv}
-            disabled={props.disabled}>Less</button>
-    </div>
-);
+class BuildControl extends Component {
+    render() {
+        return (
+            <div>
+                <div className={classes.Label}>{this.props.label}</div>
+                <button
+                    className={classes.More}
+                    onClick={this.props.add}>More</button>
+                <button
+                    className={classes.Less}
+                    onClick={this.props.rmv}
+                    disabled={this.props.disabled}>Less</button>
+            </div>
+        );
+    }
+};
 
-export default buildControl;
+export default BuildControl;

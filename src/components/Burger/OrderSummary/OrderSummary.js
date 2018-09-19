@@ -1,37 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './OrderSummary.css';
 
-const orderSummary = (props) => {
-    const style = {
-        textTransform: 'capitalize'
-    };
+class OrderSummary extends Component {
 
-    const orderList = Object.keys(props.ingredients).map(
-        igKey => <li key={igKey}>
-            <span style={style}>{igKey}</span> : {props.ingredients[igKey]}</li>
-    );
+    // // for test
+    // componentWillUpdate() {
+    //     console.log('summary updated');
+    // }
 
-    return (
-        <React.Fragment>
-            <h3>Your Order</h3>
-            <p>ingredients: </p>
-            <ul>
-                {orderList}
-            </ul>
-            <p><strong>Total Price: {props.price.toFixed(2)}</strong></p>
-            <button 
-                className={[classes.Button, classes.Danger].join(' ')}
-                onClick={props.purchaseCanceled}>
-                CANCEL
-            </button>
-
-            <button 
-                className={[classes.Button, classes.Success].join(' ')}
-                onClick={props.purchaseContinued}>
-                CONTINUE
-            </button>
-        </React.Fragment>
-    );
+    render () {
+        const style = {
+            textTransform: 'capitalize'
+        };
+    
+        const orderList = Object.keys(this.props.ingredients).map(
+            igKey => <li key={igKey}>
+                <span style={style}>{igKey}</span> : {this.props.ingredients[igKey]}</li>
+        );
+    
+        return (
+            <React.Fragment>
+                <h3>Your Order</h3>
+                <p>ingredients: </p>
+                <ul>
+                    {orderList}
+                </ul>
+                <p><strong>Total Price: {this.props.price.toFixed(2)}</strong></p>
+                <button 
+                    className={[classes.Button, classes.Danger].join(' ')}
+                    onClick={this.props.purchaseCanceled}>
+                    CANCEL
+                </button>
+    
+                <button 
+                    className={[classes.Button, classes.Success].join(' ')}
+                    onClick={this.props.purchaseContinued}>
+                    CONTINUE
+                </button>
+            </React.Fragment>
+        );
+    }
 };
 
-export default orderSummary;
+export default OrderSummary;
